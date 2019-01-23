@@ -4,14 +4,14 @@ import numpy as np
 
 
 def one():
-    img = cv2.imread('test.jpg')
+    img = cv2.imread('2.jpg')
     cv2.imshow('image', img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 
 def two():
-    img = cv2.imread('test.jpg')
+    img = cv2.imread('2.jpg')
     img[:, :, 1] = 0
     img[:, :, 2] = 0
     cv2.imshow('image', img)
@@ -20,7 +20,7 @@ def two():
 
 
 def three():
-    img = cv2.imread('test.jpg', cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread('2.jpg', cv2.IMREAD_GRAYSCALE)
 
     cv2.imshow('image', img)
     cv2.waitKey(0)
@@ -28,7 +28,7 @@ def three():
 
 
 def four():
-    img = cv2.imread('test.jpg')
+    img = cv2.imread('2.jpg')
     blur = cv2.GaussianBlur(img, (5, 5), 0)
     cv2.imshow('image', blur)
     cv2.waitKey(0)
@@ -36,7 +36,7 @@ def four():
 
 
 def five():
-    img = cv2.imread('test.jpg')
+    img = cv2.imread('2.jpg')
     (h, w) = img.shape[:2]
     center = (w / 2, h / 2)
     angle90 = 90
@@ -49,7 +49,7 @@ def five():
 
 
 def six():
-    img = cv2.imread('test.jpg')
+    img = cv2.imread('2.jpg')
     small = cv2.resize(img, (0, 0), fx=0.5, fy=1.0)
     cv2.imshow('image', small)
     cv2.waitKey(0)
@@ -57,7 +57,7 @@ def six():
 
 
 def seven():
-    img = cv2.imread('test.jpg', 0)
+    img = cv2.imread('2.jpg', 0)
     edges = cv2.Canny(img, 100, 200)
     cv2.imshow('image', edges)
     cv2.waitKey(0)
@@ -67,7 +67,7 @@ def seven():
 def eight():
     ## FROM  https://docs.opencv.org/3.4/d3/db4/tutorial_py_watershed.html
 
-    img = cv2.imread('test.jpg')
+    img = cv2.imread('5.png')
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     ## used to get a bi-level (binary) image out of a grayscale image
     ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
@@ -90,7 +90,7 @@ def eight():
 
 
 def nine():
-    imagePath = 'test.jpg'
+    imagePath = '6.jpg'
     cascPath = 'haarcascade_frontalface_default.xml'
     faceCascade = cv2.CascadeClassifier(cascPath)
     image = cv2.imread(imagePath)
@@ -111,7 +111,7 @@ def nine():
 
 
 def ten():
-    cap = cv2.VideoCapture('test.avi')
+    cap = cv2.VideoCapture('9.mp4')
     for i in range(5):
         ret, frame = cap.read()
         frame = cv2.resize(frame, (0, 0), fx=0.5, fy=0.5)
@@ -132,15 +132,13 @@ def ten():
         cv2.waitKey(500)
 
 
-one()
-two()
-three()
-four()
-five()
-six()
-seven()
-
+# one()
+# two()
+# three()
+# four()
+# five()
+# six()
+# seven()
 eight()
-nine()
-
-ten()
+# nine()
+# ten()
