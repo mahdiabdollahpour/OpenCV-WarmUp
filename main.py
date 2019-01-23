@@ -12,7 +12,8 @@ def one():
 
 def two():
     img = cv2.imread('test.jpg')
-    img[:, :, 0] = 0
+    img[:, :, 1] = 0
+    img[:, :, 2] = 0
     cv2.imshow('image', img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -64,10 +65,14 @@ def seven():
 
 
 def eight():
+    ## FROM  https://docs.opencv.org/3.4/d3/db4/tutorial_py_watershed.html
+
     img = cv2.imread('test.jpg')
-    gray = cv2.cv2tColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ## used to get a bi-level (binary) image out of a grayscale image
     ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     kernel = np.ones((3, 3), np.uint8)
+    ##. To remove any small holes in the object, we can use morphological closing
     opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=2)
     sure_bg = cv2.dilate(opening, kernel, iterations=3)
     dist_transform = cv2.distanceTransform(opening, cv2.DIST_L2, 5)
@@ -107,26 +112,35 @@ def nine():
 
 def ten():
     cap = cv2.VideoCapture('test.avi')
-    cnt = 0
-    while (cap.isOpened()):
-        cnt += 1
+    for i in range(5):
         ret, frame = cap.read()
         frame = cv2.resize(frame, (0, 0), fx=0.5, fy=0.5)
         font = cv2.FONT_HERSHEY_SIMPLEX
-        bottomLeftCornerOfText = (100, 100)
+        bottomLeftCornerOfText = (60, 60)
         fontScale = 2
         fontColor = (255, 255, 255)
         lineType = 2
 
-        cv2.putText(frame, 'index :' + str(cnt),
+        cv2.putText(frame, str((i + 1)),
                     bottomLeftCornerOfText,
                     font,
                     fontScale,
                     fontColor,
                     lineType)
 
-        cv2.imshow('frame ',frame)
+        cv2.imshow('frame ', frame)
         cv2.waitKey(500)
 
+
+one()
+two()
+three()
+four()
+five()
+six()
+seven()
+
+eight()
+nine()
 
 ten()
